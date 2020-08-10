@@ -1,0 +1,22 @@
+﻿@using System.Reflection
+<div class="text-center">
+    <p class="text-muted">v.@version Alpha</p>
+</div>
+
+@code {
+
+    private string version { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+    //return base.OnInitializedAsync();
+        await GetAssemblyVersion();
+    }
+
+    private Task GetAssemblyVersion()
+    {
+        version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+        return Task.CompletedTask;
+    }
+
+}

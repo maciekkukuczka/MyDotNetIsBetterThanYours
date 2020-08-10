@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>aspnet-MyDotNetIsBetterThanYours.Web-07B2F6C3-7C75-419C-9E56-4A0B7A022DDD</UserSecretsId>
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
