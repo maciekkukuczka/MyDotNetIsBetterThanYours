@@ -20,11 +20,11 @@
 
     <ItemGroup>
         <ProjectReference Include="..\MyDotNetIsBetterThanYours.Data\MyDotNetIsBetterThanYours.Data.csproj"/>
+        <ProjectReference Include="..\MyDotNetIsBetterThanYours.Logic\MyDotNetIsBetterThanYours.Logic.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Components\Admin"/>
-        <Folder Include="Components\Frontend"/>
     </ItemGroup>
 
 </Project>
