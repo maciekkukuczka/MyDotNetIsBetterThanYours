@@ -25,8 +25,6 @@
     <ItemGroup>
         <Folder Include="Components\Admin"/>
         <Folder Include="Components\Frontend"/>
-        <Folder Include="Pages\Admin"/>
-        <Folder Include="Pages\Frontend"/>
     </ItemGroup>
 
 </Project>
