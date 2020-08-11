@@ -12,7 +12,7 @@ namespace MyDotNetIsBetterThanYours.Logic.Interfaces.Base
     {
         AppDbContext Db { get; set; }
 
-        DbSet<T> DbSet { get; set; }
+        DbSet<T> DbSet { get; }
 
         // List<Task> Entities { get; set; }
 

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
+using MyDotNetIsBetterThanYours.Domain.Base;
 
 
 namespace MyDotNetIsBetterThanYours.Domain.Models
 {
 
-    public class User : IdentityUser
+    public class User : BaseEntity
     {
-        public bool IsActive { get; set; }
+        // public bool IsActive { get; set; }
 
         public int Points { get; set; }
 

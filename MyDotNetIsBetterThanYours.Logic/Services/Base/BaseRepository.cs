@@ -17,7 +17,7 @@ namespace MyDotNetIsBetterThanYours.Logic.Services.Base
 
 
         public AppDbContext Db { get; set; }
-        public abstract DbSet<T> DbSet { get; set; }
+        public abstract DbSet<T> DbSet { get; }
 
         public BaseRepository(AppDbContext db)
         {
