@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyDotNetIsBetterThanYours.Data;
 using MyDotNetIsBetterThanYours.Web.Areas.Identity;
+using Radzen;
 
 
 namespace MyDotNetIsBetterThanYours.Web
@@ -40,6 +41,11 @@ namespace MyDotNetIsBetterThanYours.Web
                     options.Password.RequireNonAlphanumeric = false;
                 })
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            // Radzen
+            services.AddScoped<DialogService>();
+            services.AddScoped<NotificationService>();
+
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
