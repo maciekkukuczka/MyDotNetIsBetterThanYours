@@ -4,4 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\MyDotNetIsBetterThanYours.Data\MyDotNetIsBetterThanYours.Data.csproj"/>
+    </ItemGroup>
+
 </Project>
