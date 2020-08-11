@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.AspNetCore.Identity;
 
 
 namespace MyDotNetIsBetterThanYours.Domain.Base
 {
 
-    public class AuditableEntity : IdentityUser
+    public class AuditableEntity
     {
         public int CreatedById { get; set; }
         public DateTime CreatedDate { get; set; }

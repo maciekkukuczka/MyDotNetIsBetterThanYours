@@ -1,0 +1,30 @@
+﻿@inherits AcordionComponentBase
+
+
+@if (Question == null)
+{
+    <div>Loading</div>
+}
+else
+{
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @onclick="ChangeCollapse">
+                        @Question.Content
+                    </button>
+                </h5>
+            </div>
+
+            @foreach (var answer in Question.Answers)
+            {
+                <div id="collapseOne" class="collapse @(Collapse ? "show" : "")" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @answer.Content
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

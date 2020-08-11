@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MyDotNetIsBetterThanYours.Data;
 using MyDotNetIsBetterThanYours.Domain.Models;
 using MyDotNetIsBetterThanYours.Logic.Services.Base;
@@ -14,6 +16,12 @@ namespace MyDotNetIsBetterThanYours.Logic.Services
         }
 
         public override DbSet<Question> DbSet => Db.Questions;
+
+
+        public async Task<List<Question>> GetAllQuestionsWithAnswers()
+        {
+            return await Db.Questions.Include(x => x.Answers).ToListAsync();
+        }
     }
 
 }
