@@ -152,6 +152,77 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                 b.ToTable("AspNetUserTokens");
             });
 
+            modelBuilder.Entity("MyDotNetIsBetterThanYours.Domain.Models.Answer", b =>
+            {
+                b.Property<string>("Id")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<string>("Content")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("CreatedById")
+                    .HasColumnType("int");
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
+
+                b.Property<int?>("ModifiedById")
+                    .HasColumnType("int");
+
+                b.Property<DateTime?>("ModifiedDateTime")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("QuestionId")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<string>("UserId")
+                    .HasColumnType("nvarchar(450)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("QuestionId");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("Answers");
+            });
+
+            modelBuilder.Entity("MyDotNetIsBetterThanYours.Domain.Models.Question", b =>
+            {
+                b.Property<string>("Id")
+                    .HasColumnType("nvarchar(450)");
+
+                b.Property<string>("Content")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("CreatedById")
+                    .HasColumnType("int");
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<bool>("IsActive")
+                    .HasColumnType("bit");
+
+                b.Property<int?>("ModifiedById")
+                    .HasColumnType("int");
+
+                b.Property<DateTime?>("ModifiedDateTime")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("UserId")
+                    .HasColumnType("nvarchar(450)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("Questions");
+            });
+
             modelBuilder.Entity("MyDotNetIsBetterThanYours.Domain.Models.User", b =>
             {
                 b.Property<string>("Id")
@@ -169,6 +240,9 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                     .HasMaxLength(256);
 
                 b.Property<bool>("EmailConfirmed")
+                    .HasColumnType("bit");
+
+                b.Property<bool>("IsActive")
                     .HasColumnType("bit");
 
                 b.Property<bool>("LockoutEnabled")
@@ -193,6 +267,9 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
 
                 b.Property<bool>("PhoneNumberConfirmed")
                     .HasColumnType("bit");
+
+                b.Property<int>("Points")
+                    .HasColumnType("int");
 
                 b.Property<string>("SecurityStamp")
                     .HasColumnType("nvarchar(max)");
@@ -266,6 +343,24 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
+            });
+
+            modelBuilder.Entity("MyDotNetIsBetterThanYours.Domain.Models.Answer", b =>
+            {
+                b.HasOne("MyDotNetIsBetterThanYours.Domain.Models.Question", "Question")
+                    .WithMany("Answers")
+                    .HasForeignKey("QuestionId");
+
+                b.HasOne("MyDotNetIsBetterThanYours.Domain.Models.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId");
+            });
+
+            modelBuilder.Entity("MyDotNetIsBetterThanYours.Domain.Models.Question", b =>
+            {
+                b.HasOne("MyDotNetIsBetterThanYours.Domain.Models.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId");
             });
 #pragma warning restore 612, 618
         }

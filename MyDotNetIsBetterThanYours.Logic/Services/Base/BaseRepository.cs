@@ -8,7 +8,7 @@ using MyDotNetIsBetterThanYours.Domain.Base;
 using MyDotNetIsBetterThanYours.Logic.Interfaces.Base;
 
 
-namespace MyDotNetIsBetterThanYours.Logic
+namespace MyDotNetIsBetterThanYours.Logic.Services.Base
 {
 
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
