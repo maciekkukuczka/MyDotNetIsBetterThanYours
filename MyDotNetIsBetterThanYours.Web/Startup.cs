@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyDotNetIsBetterThanYours.Data;
+using MyDotNetIsBetterThanYours.Logic.Services;
 using MyDotNetIsBetterThanYours.Web.Areas.Identity;
 using Radzen;
 
@@ -45,6 +46,12 @@ namespace MyDotNetIsBetterThanYours.Web
             // Radzen
             services.AddScoped<DialogService>();
             services.AddScoped<NotificationService>();
+
+            //Services
+            services.AddScoped<AnswersService>();
+            services.AddScoped<QuestionsService>();
+
+            // services.AddScoped<UsersService>();
 
 
             services.AddRazorPages();

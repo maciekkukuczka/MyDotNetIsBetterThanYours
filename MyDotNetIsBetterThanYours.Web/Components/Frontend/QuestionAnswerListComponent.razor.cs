@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 using MyDotNetIsBetterThanYours.Domain.Models;
 using MyDotNetIsBetterThanYours.Logic.Services;
 
@@ -12,7 +13,8 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
     {
         private QuestionsService _questionsService;
 
-        // private AnswersService _answersService;
+        private AnswersService _answersService;
+
         // private UsersService _usersService;
 
         protected List<Question> Questions;
@@ -25,14 +27,14 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         {
             // return base.OnInitializedAsync();
 
-            _questionsService = (QuestionsService) ScopedServices.GetService(typeof(QuestionsService));
+            _questionsService = (QuestionsService) ScopedServices.GetRequiredService(typeof(QuestionsService));
 
             // _answersService = (AnswersService) ScopedServices.GetService(typeof(AnswersService));
             // _usersService = (UsersService) ScopedServices.GetService(typeof(UsersService));
 
             await InitQuestionData();
 
-            // Questions = await _questionsService.GetAllQuestionsWithAnswers();
+            Questions = await _questionsService.GetAllQuestionsWithAnswers();
 
             // Answers = await _answersService.GetAllAsync();
             // Users = await _usersService.GetAllAsync();

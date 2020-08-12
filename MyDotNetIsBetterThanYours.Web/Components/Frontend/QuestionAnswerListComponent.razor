@@ -10,9 +10,9 @@ else
 
         <div class="row">
             <div class="col">
-
                 @foreach (var question in Questions)
                 {
+                    <div>@question.Content</div>
                     <AcordionComponent Question="question"/>
                 }
 
