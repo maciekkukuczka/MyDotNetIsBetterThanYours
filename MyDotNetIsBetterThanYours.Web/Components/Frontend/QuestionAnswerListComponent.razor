@@ -10,9 +10,9 @@ else
 
         <div class="row">
             <div class="col">
-
-                <button @onclick="CollapseAllCards">X</button>
-
+                <div class="d-flex justify-content-end mb-4">
+                    <button class="btn btn-outline-primary align-self-end" @onclick="CollapseAllCards">X</button>
+                </div>
                 <div id="accordion">
 
                     @foreach (var question in Questions)
