@@ -10,13 +10,16 @@ else
 
         <div class="row">
             <div class="col">
-                @foreach (var question in Questions)
-                {
-                    foreach (var answer in question.Answers)
+
+                <button @onclick="CollapseAllCards">X</button>
+
+                <div id="accordion">
+
+                    @foreach (var question in Questions)
                     {
-                        <AcordionComponent Question="question"/>
+                        <AcordionComponent Question="question" Collapse="@Collapse"/>
                     }
-                }
+                </div>
 
             </div>
         </div>

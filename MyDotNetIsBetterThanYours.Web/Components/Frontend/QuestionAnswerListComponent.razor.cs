@@ -22,7 +22,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         // protected List<Answer> Answers;
         // protected List<User> Users;
 
-        User _user = new User();
+        protected bool Collapse;
 
 
         protected async override Task OnInitializedAsync()
@@ -42,6 +42,11 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
             // Answers = await _answersService.GetAllAsync();
             // Users = await _usersService.GetAllAsync();
+        }
+
+        protected void CollapseAllCards()
+        {
+            Collapse = false;
         }
 
         //initialize Questions List

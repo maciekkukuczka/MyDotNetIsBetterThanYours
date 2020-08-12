@@ -8,7 +8,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
     public class AcordionComponentBase : ComponentBase
     {
-        protected bool Collapse = false;
+        [Parameter] public bool Collapse { get; set; } = false;
         [Parameter] public Question Question { get; set; }
 
         // [Parameter] public List<Answer> Answers { get; set; }
