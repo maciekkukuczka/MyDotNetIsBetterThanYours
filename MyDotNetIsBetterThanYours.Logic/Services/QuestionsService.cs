@@ -20,7 +20,8 @@ namespace MyDotNetIsBetterThanYours.Logic.Services
 
         public async Task<List<Question>> GetAllQuestionsWithAnswers()
         {
-            return await Db.Questions.Include(x => x.Answers).ToListAsync();
+            return await Db.Questions.Include(x => x.Answers)
+                .ThenInclude(x => x.User).ToListAsync();
         }
     }
 

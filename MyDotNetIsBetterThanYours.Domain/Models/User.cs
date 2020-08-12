@@ -7,7 +7,7 @@ namespace MyDotNetIsBetterThanYours.Domain.Models
 
     public class User : IdentityUser /*: BaseEntity*/
     {
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public int Points { get; set; }
 

@@ -7,7 +7,7 @@
 }
 else
 {
-    <div id="accordion">
+    <div id="accordion" class="mb-2">
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
@@ -21,8 +21,19 @@ else
             {
                 <div id="collapseOne" class="collapse @(Collapse ? "show" : "")" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
-                        @answer.Content
+                        <div>
+                            @answer.Content
+                        </div>
+
+                        <div>@answer.CreatedDate</div>
+                        <div>@answer.User.IsActive</div>
+                        <div>@answer.User.Points</div>
+
                     </div>
+                    @if (answer != Question.Answers.Last())
+                    {
+                        <div class="dropdown-divider " style="margin: 0 1% ; border-top: 1px solid black; border-top-left-radius:50%; height: 10px;  "></div>
+                    }
                 </div>
             }
         </div>

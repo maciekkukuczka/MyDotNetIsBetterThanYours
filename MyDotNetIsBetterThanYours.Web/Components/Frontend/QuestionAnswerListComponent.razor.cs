@@ -22,6 +22,8 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         // protected List<Answer> Answers;
         // protected List<User> Users;
 
+        User _user = new User();
+
 
         protected async override Task OnInitializedAsync()
         {
@@ -31,8 +33,10 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
             // _answersService = (AnswersService) ScopedServices.GetService(typeof(AnswersService));
             // _usersService = (UsersService) ScopedServices.GetService(typeof(UsersService));
-
-            await InitQuestionData();
+            if (Questions == null)
+            {
+                // await InitQuestionData();
+            }
 
             Questions = await _questionsService.GetAllQuestionsWithAnswers();
 
@@ -50,8 +54,24 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
                     Content = "Co to jest 'Interface'",
                     Answers = new List<Answer>
                     {
-                        new Answer {Content = "Interfejs to takie zło w c#..."},
-                        new Answer {Content = "A wcale nie bo to fajne jest!"}
+                        new Answer
+                        {
+                            Content = "Interfejs to takie zło w c#...",
+                            User = new User
+                            {
+                                Email = "emasni@fdfd",
+                                Points = 10
+                            }
+                        },
+                        new Answer
+                        {
+                            Content = "A wcale nie bo to fajne jest!",
+                            User = new User
+                            {
+                                Email = "emasni@fdfd",
+                                Points = 10
+                            }
+                        }
                     },
                     User = new User {Email = "sas", Points = 10}
                 },
@@ -60,14 +80,37 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
                     Content = "Jaką rolę pełni 'Klasa'",
                     Answers = new List<Answer>
                     {
-                        new Answer {Content = "Klasa to takie cosik..."},
-                        new Answer {Content = "Ja bym powiedział, że klasa to..."},
-                        new Answer {Content = "eeee tam"}
+                        new Answer
+                        {
+                            Content = "Klasa to takie cosik...",
+                            User = new User
+                            {
+                                Email = "emasni@fdfd",
+                                Points = 10
+                            }
+                        },
+                        new Answer
+                        {
+                            Content = "Ja bym powiedział, że klasa to...",
+                            User = new User
+                            {
+                                Email = "emasni@fdfd",
+                                Points = 10
+                            }
+                        },
+                        new Answer
+                        {
+                            Content = "eeee tam",
+                            User = new User
+                            {
+                                Email = "emasni@fdfd",
+                                Points = 10
+                            }
+                        }
                     },
                     User = new User {Email = "sas", Points = 10}
                 }
             };
-
 
             foreach (var item in questions)
             {
