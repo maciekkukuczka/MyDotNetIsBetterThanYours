@@ -13,7 +13,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Dodaj pytanie</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Dodaj odpowiedź na pytanie:<br>@Model.Content</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="CloseModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -22,13 +22,14 @@
                 <div class="modal-body">
                     <DataAnnotationsValidator/>
                     <ValidationSummary/>
-                    
+
                     <div class="row mb-3">
                         <div class="col-4">
-                            Treść pytania
+                            Odpowiedź
                         </div>
                         <div class="col-8">
-                            <input class="form-control" type="text" @bind="Model.Content" placeholder="Wpisz treść pytania...">
+                            <InputTextArea class="form-control" type="text" @bind-Value="@Answer.Content" placeholder="Wpisz odpowiedź...">
+                            </InputTextArea>
                         </div>
                     </div>
 
@@ -59,12 +60,14 @@
     [Parameter]
     public EventCallback<Question> ModelChanged { get; set; }
 
+    public Answer Answer { get; set; } = new Answer();
 
-    private async Task ValidSubmit(EditContext editContext)
+    private async Task ValidSubmit()
     {
         CloseModal();
-        Model = (Question) editContext.Model;
+        Model.Answers.Add(Answer);
         await ModelChanged.InvokeAsync(Model);
+        Answer = new Answer();
     }
 
 

@@ -13,6 +13,9 @@ else
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @onclick="ChangeCollapse">
                     @Question.Content
                 </button>
+                <button class="btn btn-outline-info " @onclick="Add">
+                    Dodaj Odpowiedź
+                </button>
             </h5>
         </div>
 
@@ -25,8 +28,8 @@ else
                     </div>
 
                     <div>@answer.CreatedDate</div>
-                    <div>@answer.User.IsActive</div>
-                    <div>@answer.User.Points</div>
+                    @* <div>@answer.User.IsActive</div> *@
+                    @* <div>@answer.User.Points</div> *@
 
                 </div>
                 @if (answer != Question.Answers.Last())
@@ -40,3 +43,6 @@ else
 
     </div>
 }
+
+<!-- Modal -->
+<ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>

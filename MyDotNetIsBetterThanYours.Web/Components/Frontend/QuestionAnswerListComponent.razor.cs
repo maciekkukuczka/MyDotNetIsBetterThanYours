@@ -54,7 +54,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         protected void Add()
         {
             Question = new Question();
-            Question.User=new User();
+            Question.User = new User();
             ModalIsOpen = true;
         }
 
@@ -65,13 +65,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
             ModalIsOpen = false;
 
             await _questionsService.AddItemAsync(question);
-         Questions=   await _questionsService.GetAllWithObjectsAsync();
-
-        }
-
-        void Save()
-        {
-            
+            Questions = await _questionsService.GetAllWithObjectsAsync();
         }
 
 

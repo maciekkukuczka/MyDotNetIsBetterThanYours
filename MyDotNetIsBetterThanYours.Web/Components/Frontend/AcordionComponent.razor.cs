@@ -1,25 +1,50 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using MyDotNetIsBetterThanYours.Domain.Models;
+using MyDotNetIsBetterThanYours.Logic.Services;
 
 
 namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 {
 
-    public class AcordionComponentBase : ComponentBase
+    public class AcordionComponentBase : OwningComponentBase
     {
+        protected bool ModalIsOpen = false;
+
+
         [Parameter] public bool Collapse { get; set; } = false;
         [Parameter] public Question Question { get; set; }
 
-        // [Parameter] public List<Answer> Answers { get; set; }
+        protected QuestionsService _questionsService;
+        protected List<Question> Questions = new List<Question>();
 
         protected async override Task OnInitializedAsync()
         {
+            // return base.OnInitializedAsync();
+
+            _questionsService = (QuestionsService) ScopedServices.GetService(typeof(QuestionsService));
         }
 
         protected void ChangeCollapse()
         {
             Collapse = !Collapse;
+        }
+
+        protected void Add()
+        {
+            Question.User = new User();
+            ModalIsOpen = true;
+        }
+
+
+        protected async Task SaveAsync(Question question)
+        {
+            Question = question;
+            ModalIsOpen = false;
+
+            await _questionsService.UpdateAsync(question);
+            Questions = await _questionsService.GetAllWithObjectsAsync();
         }
     }
 
