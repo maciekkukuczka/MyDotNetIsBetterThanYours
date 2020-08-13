@@ -1,0 +1,14 @@
+﻿<div>
+    <label asp-for="">@Label</label>
+    <InputText/>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public EventCallback<string> Input { get; set; }
+
+
+}

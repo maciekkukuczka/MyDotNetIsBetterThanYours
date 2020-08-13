@@ -1,0 +1,86 @@
+﻿@using MyDotNetIsBetterThanYours.Domain.Models
+@if (IsOpen)
+{
+    if (Model == null)
+    {
+        <em>Model is null</em>
+    }
+    else
+    {
+<EditForm Model="@Model" OnValidSubmit="@ValidSubmit">
+
+    <div class="modal  fade  @(IsOpen ? "show d-block" : "d-none")" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Dodaj pytanie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="CloseModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            Autor
+                        </div>
+                        <div class="col-8">
+                            @* <input class="form-control" type="text" @bind="Model.User.Points"> *@
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            Autor
+                        </div>
+                        <div class="col-8">
+                            <input class="form-control" type="text" @bind="Model.Content">
+                        </div>
+                    </div>
+
+                    @* <InputComponent Label="@Question.Content" Input=""></InputComponent> *@
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="CloseModal">Zamknij</button>
+                    <button type="submit" class="btn btn-primary">Zapisz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</EditForm>
+    }
+}
+
+
+@code {
+    [Parameter]
+    public bool IsOpen { get; set; } = false;
+
+    [Parameter]
+    public Question Model { get; set; }
+
+    [Parameter]
+    public EventCallback<Question> ModelChanged { get; set; }
+
+
+    private async Task ValidSubmit(EditContext editContext)
+    {
+        CloseModal();
+        Model = (Question) editContext.Model;
+        await ModelChanged.InvokeAsync(Model);
+    }
+
+
+    protected void CloseModal()
+    {
+        IsOpen = false;
+        StateHasChanged();
+    }
+
+
+
+}

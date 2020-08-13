@@ -13,8 +13,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
     {
         private QuestionsService _questionsService;
 
-        private AnswersService _answersService;
-
+        // private AnswersService _answersService;
         // private UsersService _usersService;
 
         protected List<Question> Questions;
@@ -22,7 +21,10 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         // protected List<Answer> Answers;
         // protected List<User> Users;
 
+        protected Question Question;
+
         protected bool Collapse;
+        protected bool ModalIsOpen = false;
 
 
         protected async override Task OnInitializedAsync()
@@ -48,6 +50,20 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         {
             Collapse = false;
         }
+
+        protected void AddQuestion()
+        {
+            Question = new Question();
+            ModalIsOpen = true;
+        }
+
+
+        protected void ValidSubmit(Question question)
+        {
+            Question = question;
+            ModalIsOpen = false;
+        }
+
 
         //initialize Questions List
         private async Task InitQuestionData()

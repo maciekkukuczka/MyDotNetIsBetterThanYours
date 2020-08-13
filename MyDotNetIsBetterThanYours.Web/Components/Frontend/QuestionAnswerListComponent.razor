@@ -11,7 +11,9 @@ else
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-end mb-4">
-                    <button class="btn btn-outline-primary align-self-end" @onclick="CollapseAllCards">X</button>
+                    <button class="btn btn-outline-secondary mr-4 " data-toggle="modal" data-target="#exampleModalCenter" @onclick="AddQuestion">Dodaj pytanie</button>
+
+                    <button class="btn btn-outline-primary " @onclick="CollapseAllCards">X</button>
                 </div>
                 <div id="accordion">
 
@@ -26,3 +28,12 @@ else
 
     </div>
 }
+
+@if (Question != null)
+{
+    @Question.Content
+}
+<!-- Modal -->
+
+
+<ModalAddComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@ValidSubmit"></ModalAddComponent>
