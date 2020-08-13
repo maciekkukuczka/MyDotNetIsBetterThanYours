@@ -9,7 +9,7 @@
     {
 <EditForm Model="@Model" OnValidSubmit="@ValidSubmit">
 
-    <div class="modal  fade  @(IsOpen ? "show d-block" : "d-none")" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade @(IsOpen ? "show d-block" : "d-none")" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,22 +20,15 @@
                 </div>
 
                 <div class="modal-body">
-
+                    <DataAnnotationsValidator/>
+                    <ValidationSummary/>
+                    
                     <div class="row mb-3">
                         <div class="col-4">
-                            Autor
+                            Treść pytania
                         </div>
                         <div class="col-8">
-                            @* <input class="form-control" type="text" @bind="Model.User.Points"> *@
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-4">
-                            Autor
-                        </div>
-                        <div class="col-8">
-                            <input class="form-control" type="text" @bind="Model.Content">
+                            <input class="form-control" type="text" @bind="Model.Content" placeholder="Wpisz treść pytania...">
                         </div>
                     </div>
 
