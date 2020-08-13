@@ -40,7 +40,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
                 // await InitQuestionData();
             }
 
-            Questions = await _questionsService.GetAllQuestionsWithAnswers();
+            Questions = await _questionsService.GetAllWithObjectsAsync();
 
             // Answers = await _answersService.GetAllAsync();
             // Users = await _usersService.GetAllAsync();
@@ -51,7 +51,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
             Collapse = false;
         }
 
-        protected void AddQuestion()
+        protected void Add()
         {
             Question = new Question();
             Question.User=new User();
@@ -59,10 +59,19 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         }
 
 
-        protected void ValidSubmit(Question question)
+        protected async Task SaveAsync(Question question)
         {
             Question = question;
             ModalIsOpen = false;
+
+            await _questionsService.AddItemAsync(question);
+         Questions=   await _questionsService.GetAllWithObjectsAsync();
+
+        }
+
+        void Save()
+        {
+            
         }
 
 

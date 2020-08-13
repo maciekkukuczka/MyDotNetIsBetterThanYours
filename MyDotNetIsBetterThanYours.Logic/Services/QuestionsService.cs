@@ -18,7 +18,7 @@ namespace MyDotNetIsBetterThanYours.Logic.Services
         public override DbSet<Question> DbSet => Db.Questions;
 
 
-        public async Task<List<Question>> GetAllQuestionsWithAnswers()
+        public async Task<List<Question>> GetAllWithObjectsAsync()
         {
             return await Db.Questions.Include(x => x.Answers)
                 .ThenInclude(x => x.User).ToListAsync();

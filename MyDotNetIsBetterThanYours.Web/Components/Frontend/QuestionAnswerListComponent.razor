@@ -11,7 +11,7 @@ else
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-end mb-4">
-                    <button class="btn btn-outline-secondary mr-4 " data-toggle="modal" data-target="#exampleModalCenter" @onclick="AddQuestion">Dodaj pytanie</button>
+                    <button class="btn btn-outline-secondary mr-4 " data-toggle="modal" data-target="#exampleModalCenter" @onclick="Add">Dodaj pytanie</button>
 
                     <button class="btn btn-outline-primary " @onclick="CollapseAllCards">X</button>
                 </div>
@@ -29,11 +29,14 @@ else
     </div>
 }
 
-@if (Question != null)
-{
-    @Question.Content
-}
+@* @if (Question != null) *@
+@* { *@
+@*     @Question.Content *@
+@* } *@
+
+
+
 <!-- Modal -->
 
 
-<ModalAddComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@ValidSubmit"></ModalAddComponent>
+<ModalAddComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddComponent>
