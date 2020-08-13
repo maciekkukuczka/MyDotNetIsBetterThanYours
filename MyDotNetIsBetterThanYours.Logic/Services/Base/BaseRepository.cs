@@ -106,7 +106,7 @@ namespace MyDotNetIsBetterThanYours.Logic.Services.Base
 
         public async Task SaveAsync()
         {
-            await Db.SaveChangesAsync();
+            var result = await Db.SaveChangesAsync();
         }
     }
 

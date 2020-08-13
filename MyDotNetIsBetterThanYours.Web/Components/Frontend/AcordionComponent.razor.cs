@@ -43,8 +43,12 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
             Question = question;
             ModalIsOpen = false;
 
-            await _questionsService.UpdateAsync(question);
-            Questions = await _questionsService.GetAllWithObjectsAsync();
+            var result = await _questionsService.AddAnswerToQuestion(question);
+
+            if (result != null)
+            {
+                Questions = await _questionsService.GetAllWithObjectsAsync();
+            }
         }
     }
 
