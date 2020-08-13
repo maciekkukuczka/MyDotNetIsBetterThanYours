@@ -54,6 +54,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         protected void AddQuestion()
         {
             Question = new Question();
+            Question.User=new User();
             ModalIsOpen = true;
         }
 
