@@ -49,6 +49,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         protected void CollapseAllCards()
         {
             Collapse = false;
+            ModalIsOpen = false;
         }
 
         protected void Add()
@@ -69,7 +70,9 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         }
 
 
-        //initialize Questions List
+        #region Initialize Questions List
+
+
         private async Task InitQuestionData()
         {
             var questions = new List<Question>
@@ -142,6 +145,9 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
                 var id = await _questionsService.AddItemAsync(item);
             }
         }
+
+
+        #endregion
     }
 
 }

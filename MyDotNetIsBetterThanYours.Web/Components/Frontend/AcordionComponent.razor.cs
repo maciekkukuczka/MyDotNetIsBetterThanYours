@@ -29,6 +29,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         protected void ChangeCollapse()
         {
             Collapse = !Collapse;
+            ModalIsOpen = false;
         }
 
         protected void Add()
