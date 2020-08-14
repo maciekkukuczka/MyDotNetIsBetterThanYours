@@ -44,12 +44,15 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
             // Answers = await _answersService.GetAllAsync();
             // Users = await _usersService.GetAllAsync();
+
+            // ModalIsOpen = false;
         }
 
         protected void CollapseAllCards()
         {
             Collapse = false;
-            ModalIsOpen = false;
+
+            // ModalIsOpen = false;
         }
 
         protected void Add()

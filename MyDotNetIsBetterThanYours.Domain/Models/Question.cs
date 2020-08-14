@@ -8,13 +8,14 @@ namespace MyDotNetIsBetterThanYours.Domain.Models
 
     public class Question : BaseEntity
     {
-        [Required  (ErrorMessage = "To pole nie może być puste!")]
-        [StringLength(100,ErrorMessage = "Wpis nie może przekraczać 100 znaków!")]
+        [Required(ErrorMessage = "To pole nie może być puste!")]
+        [StringLength(100, ErrorMessage = "Wpis nie może przekraczać 100 znaków!")]
         [Display(Name = "Treść pytania")]
         public string Content { get; set; }
 
         public User User { get; set; }
-        public List<Answer> Answers { get; set; }
+
+        [ValidateComplexType] public List<Answer> Answers { get; set; }
     }
 
 }

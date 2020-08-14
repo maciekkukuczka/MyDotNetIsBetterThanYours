@@ -24,12 +24,15 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
             // return base.OnInitializedAsync();
 
             _questionsService = (QuestionsService) ScopedServices.GetService(typeof(QuestionsService));
+
+            // ModalIsOpen = false;
         }
 
         protected void ChangeCollapse()
         {
             Collapse = !Collapse;
-            ModalIsOpen = false;
+
+            // ModalIsOpen = false;
         }
 
         protected void Add()

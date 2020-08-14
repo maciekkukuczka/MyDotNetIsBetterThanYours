@@ -43,6 +43,8 @@ else
 
     </div>
 }
-
 <!-- Modal -->
-<ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
+@if (ModalIsOpen)
+{
+    <ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
+}

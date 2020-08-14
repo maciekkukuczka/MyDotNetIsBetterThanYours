@@ -158,7 +158,9 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                     .HasColumnType("nvarchar(450)");
 
                 b.Property<string>("Content")
-                    .HasColumnType("nvarchar(max)");
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)")
+                    .HasMaxLength(10000);
 
                 b.Property<int>("CreatedById")
                     .HasColumnType("int");
@@ -196,7 +198,9 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                     .HasColumnType("nvarchar(450)");
 
                 b.Property<string>("Content")
-                    .HasColumnType("nvarchar(max)");
+                    .IsRequired()
+                    .HasColumnType("nvarchar(100)")
+                    .HasMaxLength(100);
 
                 b.Property<int>("CreatedById")
                     .HasColumnType("int");

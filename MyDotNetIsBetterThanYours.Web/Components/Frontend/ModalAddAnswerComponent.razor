@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <DataAnnotationsValidator/>
+                    <ObjectGraphDataAnnotationsValidator/>
                     <ValidationSummary/>
 
                     <div class="row mb-3">
@@ -28,8 +28,10 @@
                             Odpowiedź
                         </div>
                         <div class="col-8">
+                            @* <ValidationMessage For="() => Answer.Content"></ValidationMessage> *@
                             <InputTextArea class="form-control" type="text" @bind-Value="@Answer.Content" placeholder="Wpisz odpowiedź...">
                             </InputTextArea>
+
                         </div>
                     </div>
 

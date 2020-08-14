@@ -37,5 +37,7 @@ else
 
 <!-- Modal -->
 
-
-<ModalAddQuestionComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddQuestionComponent>
+@if (ModalIsOpen)
+{
+    <ModalAddQuestionComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddQuestionComponent>
+}

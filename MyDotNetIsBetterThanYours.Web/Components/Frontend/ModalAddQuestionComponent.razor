@@ -28,7 +28,9 @@
                             Treść pytania
                         </div>
                         <div class="col-8">
-                            <input class="form-control" type="text" @bind="Model.Content" placeholder="Wpisz treść pytania...">
+                            <InputText class="form-control" @bind-Value="Model.Content" placeholder="Wpisz treść pytania..."/>
+                            <ValidationMessage For="() => Model.Content"></ValidationMessage>
+
                         </div>
                     </div>
 
