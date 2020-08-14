@@ -39,6 +39,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         {
             Question.User = new User();
             ModalIsOpen = true;
+            ChangeCollapse();
         }
 
 
