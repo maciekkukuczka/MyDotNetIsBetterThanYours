@@ -6,7 +6,7 @@ using MyDotNetIsBetterThanYours.Domain.Models;
 namespace MyDotNetIsBetterThanYours.Data
 {
 
-    public class AppDbContext : IdentityDbContext<User>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         // public DbSet<User> Users { get; set; }
 

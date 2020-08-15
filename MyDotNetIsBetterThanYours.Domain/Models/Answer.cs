@@ -13,7 +13,7 @@ namespace MyDotNetIsBetterThanYours.Domain.Models
         public string Content { get; set; }
 
         public User User { get; set; }
-        public Question Question { get; set; }
+        [ValidateComplexType] public Question Question { get; set; }
     }
 
 }

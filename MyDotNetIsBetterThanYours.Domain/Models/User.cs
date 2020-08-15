@@ -1,18 +1,27 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+using MyDotNetIsBetterThanYours.Domain.Base;
 
 
 namespace MyDotNetIsBetterThanYours.Domain.Models
 {
 
-    public class User : IdentityUser /*: BaseEntity*/
-    {
-        public bool IsActive { get; set; } = true;
+    // public class AppUser:IdentityUser
+    // {
+    //     public User User { get; set; }
+    // }
 
+
+    public class User : BaseEntity
+    {
+        // public bool IsActive { get; set; } = true;
         public int Points { get; set; }
 
-        private List<Question> Questions { get; set; }
-        private List<Answer> Answers { get; set; }
+        [ForeignKey("AppUser")] public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
+        public virtual List<Question> Questions { get; set; }
+        public virtual List<Answer> Answers { get; set; }
     }
 
 }
