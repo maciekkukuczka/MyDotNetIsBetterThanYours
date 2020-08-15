@@ -76,78 +76,78 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
         #region Initialize Questions List
 
 
-        private async Task InitQuestionData()
-        {
-            var questions = new List<Question>
-            {
-                new Question
-                {
-                    Content = "Co to jest 'Interface'",
-                    Answers = new List<Answer>
-                    {
-                        new Answer
-                        {
-                            Content = "Interfejs to takie zło w c#...",
-                            User = new User
-                            {
-                                Email = "emasni@fdfd",
-                                Points = 10
-                            }
-                        },
-                        new Answer
-                        {
-                            Content = "A wcale nie bo to fajne jest!",
-                            User = new User
-                            {
-                                Email = "emasni@fdfd",
-                                Points = 10
-                            }
-                        }
-                    },
-                    User = new User {Email = "sas", Points = 10}
-                },
-                new Question
-                {
-                    Content = "Jaką rolę pełni 'Klasa'",
-                    Answers = new List<Answer>
-                    {
-                        new Answer
-                        {
-                            Content = "Klasa to takie cosik...",
-                            User = new User
-                            {
-                                Email = "emasni@fdfd",
-                                Points = 10
-                            }
-                        },
-                        new Answer
-                        {
-                            Content = "Ja bym powiedział, że klasa to...",
-                            User = new User
-                            {
-                                Email = "emasni@fdfd",
-                                Points = 10
-                            }
-                        },
-                        new Answer
-                        {
-                            Content = "eeee tam",
-                            User = new User
-                            {
-                                Email = "emasni@fdfd",
-                                Points = 10
-                            }
-                        }
-                    },
-                    User = new User {Email = "sas", Points = 10}
-                }
-            };
-
-            foreach (var item in questions)
-            {
-                var id = await _questionsService.AddItemAsync(item);
-            }
-        }
+        // private async Task InitQuestionData()
+        // {
+        //     var questions = new List<Question>
+        //     {
+        //         new Question
+        //         {
+        //             Content = "Co to jest 'Interface'",
+        //             Answers = new List<Answer>
+        //             {
+        //                 new Answer
+        //                 {
+        //                     Content = "Interfejs to takie zło w c#...",
+        //                     User = new User
+        //                     {
+        //                         AppUser.Email = "emasni@fdfd",
+        //                         Points = 10
+        //                     }
+        //                 },
+        //                 new Answer
+        //                 {
+        //                     Content = "A wcale nie bo to fajne jest!",
+        //                     User = new User
+        //                     {
+        //                         Email = "emasni@fdfd",
+        //                         Points = 10
+        //                     }
+        //                 }
+        //             },
+        //             User = new User {Email = "sas", Points = 10}
+        //         },
+        //         new Question
+        //         {
+        //             Content = "Jaką rolę pełni 'Klasa'",
+        //             Answers = new List<Answer>
+        //             {
+        //                 new Answer
+        //                 {
+        //                     Content = "Klasa to takie cosik...",
+        //                     User = new User
+        //                     {
+        //                         Email = "emasni@fdfd",
+        //                         Points = 10
+        //                     }
+        //                 },
+        //                 new Answer
+        //                 {
+        //                     Content = "Ja bym powiedział, że klasa to...",
+        //                     User = new User
+        //                     {
+        //                         Email = "emasni@fdfd",
+        //                         Points = 10
+        //                     }
+        //                 },
+        //                 new Answer
+        //                 {
+        //                     Content = "eeee tam",
+        //                     User = new User
+        //                     {
+        //                         Email = "emasni@fdfd",
+        //                         Points = 10
+        //                     }
+        //                 }
+        //             },
+        //             User = new User {Email = "sas", Points = 10}
+        //         }
+        //     };
+        //
+        //     foreach (var item in questions)
+        //     {
+        //         var id = await _questionsService.AddItemAsync(item);
+        //     }
+        // }
 
 
         #endregion

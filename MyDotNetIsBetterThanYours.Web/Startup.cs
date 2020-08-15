@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -62,7 +63,7 @@ namespace MyDotNetIsBetterThanYours.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +85,22 @@ namespace MyDotNetIsBetterThanYours.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //Db initial
+
+            // using (var serviceScope=app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            // {
+            //     var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+            //     context.Database.Migrate();
+            //     
+            // }
+
+            //OR (remember add parameter at this method-->IServiceProvider serviceProvider )
+
+            // var context=serviceProvider.GetService<AppDbContext>();
+            // context.Database.EnsureDeleted();
+            // context.Database.Migrate();
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -15,7 +15,7 @@ namespace MyDotNetIsBetterThanYours.Domain.Models
 
         public User User { get; set; }
 
-        [ValidateComplexType] public List<Answer> Answers { get; set; }
+        [ValidateComplexType] public virtual List<Answer> Answers { get; set; }
     }
 
 }
