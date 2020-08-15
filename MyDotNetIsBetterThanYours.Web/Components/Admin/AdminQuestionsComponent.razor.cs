@@ -8,7 +8,7 @@ using MyDotNetIsBetterThanYours.Logic.Services;
 namespace MyDotNetIsBetterThanYours.Web.Components.Admin
 {
 
-    public class QuestionsComponentBase : OwningComponentBase
+    public class AdminQuestionsComponentBase : OwningComponentBase
 
         // public class QuestionsComponentBase<T> : OwningComponentBase
     {
@@ -19,6 +19,9 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
         protected Question Item { get; set; }
 
         public bool IsModalOpen { get; set; }
+
+        private string DbOperationResult;
+        private bool IsEdit = false;
 
         protected async override Task OnInitializedAsync()
         {
@@ -37,21 +40,20 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
             if (item == null)
             {
                 Item = new Question();
-                Item.Id = "0";
+                IsEdit = false;
             }
             else
             {
                 Item = item;
-                await _service.EditAsync(Item);
+                IsEdit = true;
             }
-
-            await SaveAsync(Item);
         }
 
 
         protected async Task Delete(Question item)
         {
             await _service.DeleteAsync(item);
+            Items.Clear();
             Items = await _service.GetAllWithObjectsAsync();
         }
 
@@ -59,18 +61,26 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
         protected async Task SaveAsync(Question item)
         {
             Item = item;
-            IsModalOpen = false;
+            CloseModal();
 
-            if (item.Id == "0")
+            if (IsEdit)
             {
-                await _service.AddItemAsync(Item);
+                DbOperationResult = await _service.UpdateAsync(Item);
             }
             else
             {
-                await _service.UpdateAsync(Item);
+                DbOperationResult = await _service.AddItemAsync(Item);
             }
 
             Items = await _service.GetAllWithObjectsAsync();
+        }
+
+
+        protected void CloseModal()
+        {
+            IsModalOpen = false;
+
+            // StateHasChanged();
         }
     }
 

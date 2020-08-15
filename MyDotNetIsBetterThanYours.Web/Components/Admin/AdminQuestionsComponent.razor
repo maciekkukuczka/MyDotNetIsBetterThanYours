@@ -1,4 +1,4 @@
-﻿@inherits QuestionsComponentBase
+﻿@inherits AdminQuestionsComponentBase
 @* @inherits QuestionsComponentBase<Question> *@
 
 
@@ -51,3 +51,5 @@ else
 
     </div>
 }
+
+<ModalAddQuestionComponent Model="Item" IsOpen="IsModalOpen" ModelChanged="@SaveAsync"/>
