@@ -1,4 +1,4 @@
-﻿@inherits QuestionAnswerListComponentBase
+﻿@inherits FrontQuestionAnswerListComponentBase
 
 @if (Questions == null)
 {
@@ -19,7 +19,7 @@ else
 
                     @foreach (var question in Questions)
                     {
-                        <AcordionComponent Question="question" Collapse="@Collapse"/>
+                        <FrontAcordionComponent Item="question" Collapse="@Collapse"/>
                     }
                 </div>
 

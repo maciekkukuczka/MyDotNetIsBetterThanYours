@@ -8,16 +8,16 @@ using MyDotNetIsBetterThanYours.Logic.Services;
 namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 {
 
-    public class AcordionComponentBase : OwningComponentBase
+    public class FrontAcordionComponentBase : OwningComponentBase
     {
         protected bool ModalIsOpen = false;
 
 
         [Parameter] public bool Collapse { get; set; } = false;
-        [Parameter] public Question Question { get; set; }
+        [Parameter] public Question Item { get; set; }
 
         protected QuestionsService _questionsService;
-        protected List<Question> Questions = new List<Question>();
+        protected List<Question> Items = new List<Question>();
 
         protected async override Task OnInitializedAsync()
         {
@@ -37,22 +37,23 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
         protected void Add()
         {
-            Question.User = new User();
+            Item.User = new User();
             ModalIsOpen = true;
-            ChangeCollapse();
         }
 
 
         protected async Task SaveAsync(Question question)
         {
-            Question = question;
+            Item = question;
             ModalIsOpen = false;
+            Collapse = true;
+
 
             var result = await _questionsService.AddAnswerToQuestion(question);
 
             if (result != null)
             {
-                Questions = await _questionsService.GetAllWithObjectsAsync();
+                Items = await _questionsService.GetAllWithObjectsAsync();
             }
         }
     }

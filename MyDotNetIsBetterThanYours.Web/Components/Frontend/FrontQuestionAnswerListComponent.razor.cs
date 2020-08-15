@@ -9,7 +9,7 @@ using MyDotNetIsBetterThanYours.Logic.Services;
 namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 {
 
-    public class QuestionAnswerListComponentBase : OwningComponentBase
+    public class FrontQuestionAnswerListComponentBase : OwningComponentBase
     {
         private QuestionsService _questionsService;
 
