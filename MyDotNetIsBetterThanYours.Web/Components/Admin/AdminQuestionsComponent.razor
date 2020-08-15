@@ -27,6 +27,9 @@ else
             <tr>
                 <th scope="col">#</th>
                 <th>Nazwa</th>
+                <th>Odpowiedzi</th>
+                <th>Edycja</th>
+                <th>Usuń</th>
 
             </tr>
             </thead>
@@ -36,12 +39,26 @@ else
             {
                 <tr>
                     <th scope="row">@(Items.IndexOf(item) + 1) </th>
-                    <td >@item.Content</td>
+                    <td class="w-75">@item.Content</td>
+
+                    <td >
+                        <button btn btn-link @onclick="@ChangeCollapse"> @item.Answers.Count</button>
+                    </td>
+
+
                     <td >
                         <button class="button btn-outline-warning" @onclick="(() => AddEditAsync(item))">Edytuj</button>
                     </td>
                     <td >
                         <button class="button btn-outline-danger" @onclick="(() => Delete(item))">Usuń</button>
+                    </td>
+
+
+                </tr>
+                <tr>
+
+                    <td colspan="5">
+                        <AdminCollapseCardComponent Item="item" IsCollapsed="IsCollapsed" OnClick="() => (Delete(item))"></AdminCollapseCardComponent>
                     </td>
                 </tr>
             }

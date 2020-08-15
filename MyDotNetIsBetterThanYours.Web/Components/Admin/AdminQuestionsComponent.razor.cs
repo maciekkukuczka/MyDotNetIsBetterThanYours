@@ -20,8 +20,10 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
 
         public bool IsModalOpen { get; set; }
 
+        protected bool IsCollapsed;
         private string DbOperationResult;
         private bool IsEdit = false;
+
 
         protected async override Task OnInitializedAsync()
         {
@@ -81,6 +83,11 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
             IsModalOpen = false;
 
             // StateHasChanged();
+        }
+
+        public void ChangeCollapse()
+        {
+            IsCollapsed = !IsCollapsed;
         }
     }
 

@@ -1,7 +1,7 @@
-﻿@inherits AcordionComponentBase
+﻿@inherits FrontAcordionComponentBase
 
 
-@if (Question == null)
+@if (Item == null)
 {
     <div>Loading</div>
 }
@@ -11,7 +11,7 @@ else
         <div class="card-header" id="headingOne">
             <h5 class="mb-0 d-flex justify-content-between">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @onclick="ChangeCollapse">
-                    @Question.Content
+                    @Item.Content
                 </button>
                 <button class="btn btn-outline-info " @onclick="Add">
                     Dodaj Odpowiedź
@@ -19,7 +19,7 @@ else
             </h5>
         </div>
 
-        @foreach (var answer in Question.Answers)
+        @foreach (var answer in Item.Answers)
         {
             <div id="collapseOne" class="collapse @(Collapse ? "show" : "")" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
@@ -32,7 +32,7 @@ else
                     @* <div>@answer.User.Points</div> *@
 
                 </div>
-                @if (answer != Question.Answers.Last())
+                @if (answer != Item.Answers.Last())
                 {
                     <div class="dropdown-divider " style="margin: 0 1% ; border-top: 1px solid black; border-top-left-radius:50%; height: 10px;  "></div>
                 }
@@ -46,5 +46,5 @@ else
 <!-- Modal -->
 @if (ModalIsOpen)
 {
-    <ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
+    <ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Item" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
 }
