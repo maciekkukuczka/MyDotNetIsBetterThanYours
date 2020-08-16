@@ -1,0 +1,73 @@
+﻿@inherits AdminAnswersComponentBase
+@* @inherits QuestionsComponentBase<Answer> *@
+
+
+
+
+@if (Items == null)
+{
+    <em>Loading...</em>
+}
+else
+{
+    <div class="container-fluid">
+
+
+        <div class="d-flex justify-content-end">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter" @onclick="() => AddEditAsync(null)">
+                Dodaj
+            </button>
+
+        </div>
+
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th>Nazwa</th>
+                <th>Edycja</th>
+                <th>Usuń</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var item in Items)
+            {
+                <tr>
+                    <th scope="row">@(Items.IndexOf(item) + 1) </th>
+                    <td class="w-75">@item.Content</td>
+
+                    @* <td > *@
+                    @*     <button btn btn-link @onclick="@ChangeCollapse"> @Items.Count</button> *@
+                    @* </td> *@
+
+
+                    <td >
+                        <button class="button btn-outline-warning" @onclick="() => AddEditAsync(item)">Edytuj</button>
+                    </td>
+                    <td >
+                        <button class="button btn-outline-danger" @onclick="() => Delete(item)">Usuń</button>
+                    </td>
+
+
+                </tr>
+@*                 <tr> *@
+@* *@
+@*                     <td colspan="5"> *@
+@*                         <AdminCollapseCardComponent Item="item" IsCollapsed="IsCollapsed" OnClick="() => Delete(item)"></AdminCollapseCardComponent> *@
+@*                     </td> *@
+@*                 </tr> *@
+            }
+            </tbody>
+
+        </table>
+
+    </div>
+}
+@if (IsModalOpen)
+{
+    <AdminModalAddAnswerComponent Model="Item" IsOpen="IsModalOpen" ModelChanged="SaveAsync"/>
+}
