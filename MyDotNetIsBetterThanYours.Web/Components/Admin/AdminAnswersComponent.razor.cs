@@ -33,7 +33,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
         }
 
 
-        protected async Task AddEditAsync(Answer item)
+        public async Task AddEditAsync(Answer item)
         {
             IsModalOpen = true;
 
@@ -58,7 +58,7 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
         }
 
 
-        protected async Task SaveAsync(Answer item)
+        public async Task SaveAsync(Answer item)
         {
             Item = item;
             CloseModal();
