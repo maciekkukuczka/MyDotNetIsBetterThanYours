@@ -61,7 +61,6 @@
     [Parameter]
     public EventCallback<Question> ModelChanged { get; set; }
 
-
     private async Task ValidSubmit(EditContext editContext)
     {
         CloseModal();
@@ -73,10 +72,10 @@
     protected void CloseModal()
     {
         IsOpen = false;
-
-    // StateHasChanged();
     }
 
+    // StateHasChanged();
+}
 
 
 }
