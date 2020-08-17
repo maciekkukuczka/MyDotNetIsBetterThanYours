@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDotNetIsBetterThanYours.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDotNetIsBetterThanYours.Data", "MyDotNetIsBetterThanYours.Data\MyDotNetIsBetterThanYours.Data.csproj", "{3A347846-9124-4EC7-8809-9D9C665E0821}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDotNetIsBetterThenYours.Tests", "MyDotNetIsBetterThenYours.Tests\MyDotNetIsBetterThenYours.Tests.csproj", "{B6584B1B-601D-47B1-8DC2-6AA71143058D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{3A347846-9124-4EC7-8809-9D9C665E0821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A347846-9124-4EC7-8809-9D9C665E0821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A347846-9124-4EC7-8809-9D9C665E0821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6584B1B-601D-47B1-8DC2-6AA71143058D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6584B1B-601D-47B1-8DC2-6AA71143058D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6584B1B-601D-47B1-8DC2-6AA71143058D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6584B1B-601D-47B1-8DC2-6AA71143058D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
