@@ -127,6 +127,10 @@ namespace MyDotNetIsBetterThenYours.Tests
             // result.Should().NotBeEmpty();
             // result.Should().BeOfType(typeof(Answer));
             // result.Should().BeSameAs(expected);
+
+
+            //Clean
+            await service.DeleteAsync(answer1);
         }
     }
 
