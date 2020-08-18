@@ -1,6 +1,8 @@
 ﻿@inherits FrontQuestionAnswerListComponentBase
 
-@if (Questions == null)
+
+
+@if (Items == null)
 {
     <div>Loading</div>
 }
@@ -10,16 +12,43 @@ else
 
         <div class="row">
             <div class="col">
+
+                <div>
+                    @AuthUserIdentityName
+                    @AuthUserName
+                    @AuthUserEmail
+
+                    @if (Item != null)
+                    {
+                        @Item.User.Id
+                        @Item.User.AppUserId
+                    }
+                    else
+                    {
+                        <p>Input puste</p>
+                    }
+
+                </div>
                 <div class="d-flex justify-content-end mb-4">
-                    <button class="btn btn-outline-secondary mr-4 " data-toggle="modal" data-target="#exampleModalCenter" @onclick="Add">Dodaj pytanie</button>
+
+                    <AuthorizeView>
+                        <Authorized>
+                            <button class="btn btn-outline-secondary mr-4 " data-toggle="modal" data-target="#exampleModalCenter" @onclick="() => AddEdit(null)">Dodaj pytanie</button>
+                        </Authorized>
+
+
+                        <NotAuthorized>
+                            <button class="btn btn-outline-secondary mr-4 disabled " disabled data-toggle="modal" data-target="#exampleModalCenter" @onclick="() => AddEdit(null)">Dodaj pytanie</button>
+                        </NotAuthorized>
+                    </AuthorizeView>
 
                     <button class="btn btn-outline-primary " @onclick="CollapseAllCards">X</button>
                 </div>
                 <div id="accordion">
 
-                    @foreach (var question in Questions)
+                    @foreach (var question in Items)
                     {
-                        <FrontAcordionComponent Item="question" Collapse="@Collapse"/>
+                        <FrontAcordionComponent Item="question" Collapse="@IsCollapsed"/>
                     }
                 </div>
 
@@ -37,7 +66,7 @@ else
 
 <!-- Modal -->
 
-@if (ModalIsOpen)
+@if (IsModalOpen)
 {
-    <ModalAddQuestionComponent IsOpen="@ModalIsOpen" Model="@Question" ModelChanged="@SaveAsync"></ModalAddQuestionComponent>
+    <ModalAddQuestionComponent IsOpen="@IsModalOpen" Model="@Item" ModelChanged="@SaveAsync"></ModalAddQuestionComponent>
 }

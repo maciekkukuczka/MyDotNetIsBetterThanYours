@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyDotNetIsBetterThanYours.Data;
+using MyDotNetIsBetterThanYours.Domain.Models;
 using MyDotNetIsBetterThanYours.Logic.Services;
 using MyDotNetIsBetterThanYours.Web.Areas.Identity;
 using Radzen;
@@ -33,7 +34,7 @@ namespace MyDotNetIsBetterThanYours.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<AppUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = true;
                     options.Password.RequireDigit = false;
@@ -51,6 +52,8 @@ namespace MyDotNetIsBetterThanYours.Web
             //Services
             services.AddScoped<AnswersService>();
             services.AddScoped<QuestionsService>();
+            services.AddScoped<UsersService>();
+            services.AddScoped<UserManager<AppUser>>();
 
             // services.AddScoped<UsersService>();
 
@@ -74,9 +77,9 @@ namespace MyDotNetIsBetterThanYours.Web
             }
             else
             {
+                app.UseExceptionHandler("/Error");
             }
 
-            app.UseExceptionHandler("/Error");
 
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();

@@ -13,9 +13,38 @@ else
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @onclick="ChangeCollapse">
                     @Item.Content
                 </button>
-                <button class="btn btn-outline-info " @onclick="Add">
-                    Dodaj Odpowiedź
-                </button>
+
+                <div>
+                    <span>Item.User.Id: @Item.User.Id</span>
+                </div>
+
+                <div>
+                    <span>Item.User.AnwswersPoints: @Item.User.AnwswersPoints</span>
+                    <span>Item.User.QuestionPoints: @Item.User.QuestionPoints</span>
+                </div>
+
+                @if (Item.User.AppUser != null)
+                {
+                    <div>
+                        <span>Item.User.AppUserId: @Item.User.AppUserId</span>
+                    </div>
+@*                     <div><span>Item.User.Email: @Item.User.AppUser.Email</span></div> *@
+                }
+                <AuthorizeView>
+                    <Authorized>
+                        <button class="btn btn-outline-info " @onclick="AddEdit">
+                            Dodaj Odpowiedź
+                        </button>
+
+                    </Authorized>
+                    <NotAuthorized>
+                        <button class="btn btn-outline-info disabled" disabled @onclick="AddEdit">
+                            Dodaj Odpowiedź
+                        </button>
+
+                    </NotAuthorized>
+                </AuthorizeView>
+
             </h5>
         </div>
 
@@ -29,7 +58,8 @@ else
 
                     <div>@answer.CreatedDate</div>
                     @* <div>@answer.User.IsActive</div> *@
-                    @* <div>@answer.User.Points</div> *@
+                    @* <div>@answer.User.AnwswersPoints</div> *@
+                    @* <div>@answer.User.QuestionPoints</div> *@
 
                 </div>
                 @if (answer != Item.Answers.Last())
@@ -44,7 +74,7 @@ else
     </div>
 }
 <!-- Modal -->
-@if (ModalIsOpen)
+@if (IsModalOpen)
 {
-    <ModalAddAnswerComponent IsOpen="@ModalIsOpen" Model="@Item" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
+    <ModalAddAnswerComponent IsOpen="@IsModalOpen" Model="@Item" ModelChanged="@SaveAsync"></ModalAddAnswerComponent>
 }

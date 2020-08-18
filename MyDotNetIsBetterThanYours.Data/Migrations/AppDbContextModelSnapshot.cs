@@ -297,6 +297,9 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                 b.Property<string>("Id")
                     .HasColumnType("nvarchar(450)");
 
+                b.Property<int>("AnwswersPoints")
+                    .HasColumnType("int");
+
                 b.Property<string>("AppUserId")
                     .HasColumnType("nvarchar(450)");
 
@@ -315,7 +318,7 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                 b.Property<DateTime?>("ModifiedDateTime")
                     .HasColumnType("datetime2");
 
-                b.Property<int>("Points")
+                b.Property<int>("QuestionPoints")
                     .HasColumnType("int");
 
                 b.HasKey("Id");
@@ -324,7 +327,7 @@ namespace MyDotNetIsBetterThanYours.Data.Migrations
                     .IsUnique()
                     .HasFilter("[AppUserId] IS NOT NULL");
 
-                b.ToTable("User");
+                b.ToTable("Users");
             });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

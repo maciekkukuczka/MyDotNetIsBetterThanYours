@@ -9,19 +9,16 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Admin
 {
 
     public class AdminAnswersComponentBase : OwningComponentBase
-
-        // public class QuestionsComponentBase<T> : OwningComponentBase where T:Answer 
     {
-        private string DbOperationResult;
-        protected bool IsCollapsed;
-        private bool IsEdit;
-
-
-        protected List<Answer> Items;
         private AnswersService _service { get; set; }
         protected Answer Item { get; set; }
 
-        public bool IsModalOpen { get; set; }
+        protected List<Answer> Items;
+
+        protected bool IsModalOpen { get; set; }
+        protected bool IsCollapsed;
+        private bool IsEdit;
+        private string DbOperationResult;
 
 
         protected override async Task OnInitializedAsync()

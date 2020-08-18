@@ -6,16 +6,10 @@ using MyDotNetIsBetterThanYours.Domain.Base;
 namespace MyDotNetIsBetterThanYours.Domain.Models
 {
 
-    // public class AppUser:IdentityUser
-    // {
-    //     public User User { get; set; }
-    // }
-
-
     public class User : BaseEntity
     {
-        // public bool IsActive { get; set; } = true;
-        public int Points { get; set; }
+        public int AnwswersPoints { get; set; }
+        public int QuestionPoints { get; set; }
 
         [ForeignKey("AppUser")] public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }

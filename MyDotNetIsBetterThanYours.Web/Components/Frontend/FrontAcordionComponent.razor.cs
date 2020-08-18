@@ -10,7 +10,10 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
     public class FrontAcordionComponentBase : OwningComponentBase
     {
-        protected bool ModalIsOpen = false;
+        protected bool IsModalOpen = false;
+        private string DbOperationResult;
+        protected bool IsCollapsed;
+        private bool IsEdit;
 
 
         [Parameter] public bool Collapse { get; set; } = false;
@@ -35,17 +38,17 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
             // ModalIsOpen = false;
         }
 
-        protected void Add()
+        protected void AddEdit()
         {
             Item.User = new User();
-            ModalIsOpen = true;
+            IsModalOpen = true;
         }
 
 
         protected async Task SaveAsync(Question question)
         {
             Item = question;
-            ModalIsOpen = false;
+            IsModalOpen = false;
             Collapse = true;
 
 

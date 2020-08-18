@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using MyDotNetIsBetterThanYours.Domain.Models;
 using MyDotNetIsBetterThanYours.Logic.Services;
@@ -11,65 +14,105 @@ namespace MyDotNetIsBetterThanYours.Web.Components.Frontend
 
     public class FrontQuestionAnswerListComponentBase : OwningComponentBase
     {
-        private QuestionsService _questionsService;
+        private QuestionsService _service;
+        private UsersService _userService;
 
-        // private AnswersService _answersService;
-        // private UsersService _usersService;
+        protected List<Question> Items;
+        protected List<User> Users;
 
-        protected List<Question> Questions;
+        protected Question Item;
 
-        // protected List<Answer> Answers;
-        // protected List<User> Users;
+        protected string AuthUser;
 
-        protected Question Question;
+        protected bool IsModalOpen = false;
+        protected bool IsCollapsed;
+        private string DbOperationResult;
+        private bool IsEdit;
 
-        protected bool Collapse;
-        protected bool ModalIsOpen = false;
+        protected string AuthUserIdentityName;
+        protected string AuthUserName;
+        protected string AuthUserEmail;
+        protected AppUser currentUser;
+
+        // [Inject] private AuthenticationStateProvider _authenticationStateProvider { get; set; }
+        [CascadingParameter] private Task<AuthenticationState> _authenticationState { get; set; }
+        [Inject] private UserManager<AppUser> UserManager { get; set; }
 
 
         protected async override Task OnInitializedAsync()
         {
             // return base.OnInitializedAsync();
 
-            _questionsService = (QuestionsService) ScopedServices.GetRequiredService(typeof(QuestionsService));
+            _service = (QuestionsService) ScopedServices.GetRequiredService(typeof(QuestionsService));
+            _userService = (UsersService) ScopedServices.GetRequiredService(typeof(UsersService));
 
-            // _answersService = (AnswersService) ScopedServices.GetService(typeof(AnswersService));
-            // _usersService = (UsersService) ScopedServices.GetService(typeof(UsersService));
-            if (Questions == null)
+
+            if (Items == null)
             {
                 // await InitQuestionData();
             }
 
-            Questions = await _questionsService.GetAllWithObjectsAsync();
+            Items = await _service.GetAllWithObjectsAsync();
+            Items = Items.OrderBy(question => question.CreatedDate).ToList();
+            Users = await _userService.GetAllUsersWithAppUsersAsync();
 
             // Answers = await _answersService.GetAllAsync();
             // Users = await _usersService.GetAllAsync();
 
             // ModalIsOpen = false;
+
+            // authenticationState=  _authenticationStateProvider.GetAuthenticationStateAsync();
+            var user = (await _authenticationState).User;
+            AuthUserName = user.Identity.Name;
+
+            if (user.Identity.IsAuthenticated)
+            {
+                currentUser = await UserManager.GetUserAsync(user);
+
+                // AuthUserName = currentUser.UserName;
+                // AuthUserEmail = currentUser.User.AppUserId;
+            }
         }
 
         protected void CollapseAllCards()
         {
-            Collapse = false;
+            IsCollapsed = false;
 
             // ModalIsOpen = false;
         }
 
-        protected void Add()
+        protected void AddEdit(Question item)
         {
-            Question = new Question();
-            Question.User = new User();
-            ModalIsOpen = true;
+            IsModalOpen = true;
+
+            if (item == null)
+            {
+                Item = new Question();
+                IsEdit = false;
+
+
+                // Item.User = Users.FirstOrDefault(x => x.AppUserId == currentUser.Id);
+
+                Item.User = currentUser.User;
+                Item.User.AnwswersPoints += 1;
+                Item.User.QuestionPoints += 2;
+            }
+            else
+            {
+                Item = item;
+                IsEdit = true;
+            }
         }
 
 
         protected async Task SaveAsync(Question question)
         {
-            Question = question;
-            ModalIsOpen = false;
+            Item = question;
+            IsModalOpen = false;
 
-            await _questionsService.AddItemAsync(question);
-            Questions = await _questionsService.GetAllWithObjectsAsync();
+            await _service.AddItemAsync(question);
+            Items = await _service.GetAllWithObjectsAsync();
+            Items = Items.OrderBy(x => x.CreatedDate).ToList();
         }
 
 

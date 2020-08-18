@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MyDotNetIsBetterThanYours.Domain.Base;
 using MyDotNetIsBetterThanYours.Domain.Models;
 
 
@@ -12,6 +13,14 @@ namespace MyDotNetIsBetterThanYours.Data
 
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<BaseEntity> BasEntities { get; set; }
+        public DbSet<AuditableEntity> AuditableEntities { get; set; }
+
+
+        // public DbSet<AppUser> AppUsers { get; set; }
+        // public DbSet<IdentityUser> IdentityUsers { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
